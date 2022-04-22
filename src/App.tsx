@@ -30,7 +30,7 @@ function App() {
                 <Button
                     name={'-'}
                     callBack={decrement}
-                    disable={state === endCount}/>
+                    disable={state === startCount}/>
                 <Button
                     name={'Reset'}
                     callBack={reset}/>
