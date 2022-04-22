@@ -1,0 +1,23 @@
+.button {
+    width: 90px;
+    height: 30px;
+    color: white;
+    background-color: #454545;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px;
+}
+.button:hover {
+    border-color: greenyellow;
+    box-shadow: 2px 2px 2px greenyellow;
+}
+.disable {
+    width: 90px;
+    height: 30px;
+    color: white;
+    background-color: #454545;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px;
+    opacity: 50%;
+}
