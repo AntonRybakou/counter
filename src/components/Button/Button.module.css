@@ -8,6 +8,7 @@
     box-shadow: 2px 2px 2px;
 }
 .button:hover {
+    color: greenyellow;
     border-color: greenyellow;
     box-shadow: 2px 2px 2px greenyellow;
 }
