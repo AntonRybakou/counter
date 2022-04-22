@@ -33,7 +33,8 @@ function App() {
                     disable={state === startCount}/>
                 <Button
                     name={'Reset'}
-                    callBack={reset}/>
+                    callBack={reset}
+                    disable={state === startCount}/>
             </div>
         </div>
     );
