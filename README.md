@@ -1,7 +1,7 @@
 # Simple counter
 
 #### Added new css
-![img.png](img.png)
+![img.png](src/images/img.png)
 
 #### Disable "-" and "reset" buttons when count is 0
 
