@@ -5,13 +5,13 @@ import {Button} from "./components/Button/Button";
 
 function App() {
     const startCount = 0;
-    const endCount = 5
+    const endCount = 3;
     const [state, setState] = useState(startCount)
     const increment = () => {
-        setState( a => ++a );
+        setState(a => ++a);
     }
     const decrement = () => {
-        setState( a => --a );
+        setState(a => --a);
     }
     const reset = () => {
         setState(0);

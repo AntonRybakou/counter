@@ -1,24 +1,36 @@
 .button {
-    width: 90px;
+    width: 70px;
     height: 30px;
     color: white;
-    background-color: #454545;
-    border: 2px solid white;
+    border: 1px solid white;
+
     border-radius: 5px;
-    box-shadow: 2px 2px 2px;
+    background: #5c5c5c;
+    box-shadow: 7px 7px 14px #252525,
+    -7px -7px 14px #939393;
 }
+
 .button:hover {
     color: greenyellow;
     border-color: greenyellow;
-    box-shadow: 2px 2px 2px greenyellow;
+    cursor: pointer;
 }
+
+.button:active {
+    background: #5c5c5c;
+    box-shadow: inset 7px 7px 14px #252525,
+    inset -7px -7px 14px #939393;
+    transform: translateY(1px) translateX(2px);
+}
+
 .disable {
-    width: 90px;
-    height: 30px;
+    box-shadow: none;
+    opacity: 50%;
+}
+
+.disable:hover {
     color: white;
-    background-color: #454545;
-    border: 2px solid white;
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px;
+    border-color: white;
+    box-shadow: none;
     opacity: 50%;
 }

@@ -13,7 +13,7 @@ export const Button: React.FC<ButtonPropsType> = ( { name, callBack, disable } )
     }
     return (
         <button
-            className={ disable ? style.disable : style.button}
+            className={`${style.button} ${disable ? style.disable : style.button}`}
             disabled={disable}
             onClick={onClickHandler}>
             {name}
