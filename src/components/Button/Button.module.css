@@ -27,10 +27,12 @@
     box-shadow: none;
     opacity: 50%;
 }
-
 .disable:hover {
     color: white;
     border-color: white;
     box-shadow: none;
     opacity: 50%;
+}
+.disable:active {
+    transform: none;
 }

@@ -18,24 +18,29 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Counter
-                data={state}
-                endCount={endCount}/>
-            <div className='buttons'>
-                <Button
-                    name={'+'}
-                    callBack={increment}
-                    disable={state === endCount}/>
-                <Button
-                    name={'-'}
-                    callBack={decrement}
-                    disable={state === startCount}/>
-                <Button
-                    name={'Reset'}
-                    callBack={reset}/>
+        <>
+            <div className="App">
+                <Counter
+                    data={state}
+                    endCount={endCount}/>
+                <div className='buttons'>
+                    <Button
+                        name={'+'}
+                        callBack={increment}
+                        disable={state === endCount}/>
+                    <Button
+                        name={'-'}
+                        callBack={decrement}
+                        disable={state === startCount}/>
+                    <Button
+                        name={'Reset'}
+                        callBack={reset}/>
+                </div>
             </div>
-        </div>
+            <div className="Set">
+
+            </div>
+        </>
     );
 }
 

@@ -23,12 +23,12 @@
   align-items: center;
 }
 
-.Neo {
-  width: 100px;
-  height: 50px;
-  margin: 40px auto;
+.Set {
+  margin: 50px auto;
+  width: 370px;
+  border: 2px solid white;
 
   border-radius: 25px;
-  box-shadow:  7px 7px 14px #252525,
-  -7px -7px 14px #939393;
+  box-shadow:  37px 37px 74px #252525,
+  -37px -37px 74px #939393;
 }
