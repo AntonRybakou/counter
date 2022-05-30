@@ -38,7 +38,6 @@ function App() {
                 </div>
             </div>
             <div className="Set">
-
             </div>
         </>
     );
