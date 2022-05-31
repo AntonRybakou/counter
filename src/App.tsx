@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter'
 import {Button} from "./components/Button/Button";
@@ -27,9 +27,22 @@ function App() {
     }
 
     const setLocalStorage = () => {
-        localStorage.setItem('min', JSON.stringify(min));
-        localStorage.setItem('max', JSON.stringify(max));
+        localStorage.setItem('minValue', JSON.stringify(min));
+        localStorage.setItem('maxValue', JSON.stringify(max));
+        setState(min);
     }
+
+    useEffect(() => {
+        const localMin = localStorage.getItem('minValue');
+        const localMax = localStorage.getItem('maxValue');
+        if (localMin) {
+            setMin(JSON.parse(localMin));
+            setState(JSON.parse(localMin));
+        }
+        if (localMax) {
+            setMax(JSON.parse(localMax));
+        }
+    }, [])
 
     return (
         <>
