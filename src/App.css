@@ -1,34 +1,26 @@
-.App {
-  margin: 50px auto;
-  width: 370px;
-  border: 2px solid white;
 
+.App {
+
+  width: 370px;
+
+  margin: 50px auto;
+  border: 2px solid white;
   border-radius: 25px;
   box-shadow:  37px 37px 74px #252525,
   -37px -37px 74px #939393;
 }
 
 .buttons {
-  margin: 40px auto;
   width: 300px;
   height: 70px;
-  border: 2px solid white;
-
-  border-radius: 25px;
-  box-shadow:  15px 15px 30px #252525,
-  -15px -15px 30px #939393;
 
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
 
-.Set {
-  margin: 50px auto;
-  width: 370px;
+  margin: 40px auto;
   border: 2px solid white;
-
   border-radius: 25px;
-  box-shadow:  37px 37px 74px #252525,
-  -37px -37px 74px #939393;
+  box-shadow:  15px 15px 30px #252525,
+  -15px -15px 30px #939393;
 }

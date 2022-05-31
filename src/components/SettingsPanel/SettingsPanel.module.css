@@ -1,0 +1,41 @@
+.Set {
+    width: 370px;
+
+    margin: 50px auto;
+    border: 2px solid white;
+    border-radius: 25px;
+    box-shadow:  37px 37px 74px #252525,
+    -37px -37px 74px #939393;
+}
+
+.maxBlock {
+    width: 300px;
+    height: 70px;
+
+    text-align: center;
+
+    margin: 40px auto;
+    border: 2px solid white;
+    border-radius: 25px;
+    box-shadow:  15px 15px 30px #252525,
+    -15px -15px 30px #939393;
+}
+
+.minBlock {
+    width: 300px;
+    height: 70px;
+
+    text-align: center;
+
+    margin: 40px auto;
+    border: 2px solid white;
+    border-radius: 25px;
+    box-shadow:  15px 15px 30px #252525,
+    -15px -15px 30px #939393;
+}
+
+.buttonBlock {
+    margin: 40px auto;
+
+    text-align: center;
+}

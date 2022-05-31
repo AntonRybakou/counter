@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Counter} from './components/Counter/Counter'
 import {Button} from "./components/Button/Button";
-import {Input} from "./components/Input/Input";
+import {SettingsPanel} from "./components/SettingsPanel/SettingsPanel";
 
 function App() {
     const [state, setState] = useState(0)
@@ -31,32 +31,29 @@ function App() {
         localStorage.setItem('max', JSON.stringify(max));
     }
 
-
     return (
         <>
             <div className="App">
-                <Counter data={state} endCount={max}/>
+                <Counter data={state}
+                         endCount={max}/>
+
                 <div className='buttons'>
-                    <Button name={'+'} callBack={increment} disable={state >= max}/>
-                    <Button name={'-'} callBack={decrement} disable={state <= min}/>
-                    <Button name={'Reset'} callBack={reset}/>
+                    <Button name={'+'}
+                            callBack={increment}
+                            disable={state >= max}/>
+                    <Button name={'-'}
+                            callBack={decrement}
+                            disable={state <= min}/>
+                    <Button name={'Reset'}
+                            callBack={reset}/>
                 </div>
             </div>
 
-            <div className="Set">
-
-                <div className="Max">
-                    Maximum
-                    <Input value={max} callBack={resetMax} type={'number'}/>
-                </div>
-
-                <div className="Min">
-                    Minimum
-                    <Input value={min} callBack={resetMin} type={'number'}/>
-                </div>
-
-                <Button name={'Set'} callBack={setLocalStorage}/>
-            </div>
+            <SettingsPanel min={min}
+                           max={max}
+                           resetMin={resetMin}
+                           resetMax={resetMax}
+                           setLocalStorage={setLocalStorage}/>
         </>
     );
 }
