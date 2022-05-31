@@ -17,25 +17,18 @@ function App() {
     }
 
     const [min, setMin] = useState(0);
-    const incrementMin = () => {
-        setMin(a => ++a);
-    }
-    const decrementMin = () => {
-        setMin(a => --a);
-    }
     const resetMin = (value: number) => {
         setMin(value);
     }
 
     const [max, setMax] = useState(3);
-    const incrementMax = () => {
-        setMax(a => ++a);
-    }
-    const decrementMax = () => {
-        setMax(a => --a);
-    }
     const resetMax = (value: number) => {
         setMax(value);
+    }
+
+    const setLocalStorage = () => {
+        localStorage.setItem('min', JSON.stringify(min));
+        localStorage.setItem('max', JSON.stringify(max));
     }
 
 
@@ -44,8 +37,8 @@ function App() {
             <div className="App">
                 <Counter data={state} endCount={max}/>
                 <div className='buttons'>
-                    <Button name={'+'} callBack={increment} disable={state === max}/>
-                    <Button name={'-'} callBack={decrement} disable={state === min}/>
+                    <Button name={'+'} callBack={increment} disable={state >= max}/>
+                    <Button name={'-'} callBack={decrement} disable={state <= min}/>
                     <Button name={'Reset'} callBack={reset}/>
                 </div>
             </div>
@@ -53,18 +46,16 @@ function App() {
             <div className="Set">
 
                 <div className="Max">
-                    <Input value={max} callBack={resetMax}/>
-                    <Button name={"+"} callBack={incrementMax}/>
-                    <Button name={"-"} callBack={decrementMax}/>
+                    Maximum
+                    <Input value={max} callBack={resetMax} type={'number'}/>
                 </div>
 
                 <div className="Min">
-                    <Input value={min} callBack={resetMin}/>
-                    <Button name={"+"} callBack={incrementMin}/>
-                    <Button name={"-"} callBack={decrementMin}/>
+                    Minimum
+                    <Input value={min} callBack={resetMin} type={'number'}/>
                 </div>
 
-                <Button name={'Set'} callBack={reset}/>
+                <Button name={'Set'} callBack={setLocalStorage}/>
             </div>
         </>
     );

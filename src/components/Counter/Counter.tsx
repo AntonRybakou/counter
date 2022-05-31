@@ -7,5 +7,5 @@ type CounterPropsType = {
 }
 
 export const Counter: React.FC<CounterPropsType> = ({data, endCount}) => {
-    return <div className={`${style.count} ${(data === endCount) ? style.red : ''}`}>{data}</div>
+    return <div className={`${style.count} ${(data >= endCount) ? style.red : ''}`}>{data}</div>
 };
