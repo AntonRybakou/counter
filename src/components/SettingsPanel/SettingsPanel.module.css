@@ -12,7 +12,10 @@
     width: 300px;
     height: 70px;
 
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 
     margin: 40px auto;
     border: 2px solid white;
@@ -21,17 +24,30 @@
     -15px -15px 30px #939393;
 }
 
+.maxTitle {
+    font-weight: bold;
+    width: 80px;
+}
+
 .minBlock {
     width: 300px;
     height: 70px;
 
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 
     margin: 40px auto;
     border: 2px solid white;
     border-radius: 25px;
     box-shadow:  15px 15px 30px #252525,
     -15px -15px 30px #939393;
+}
+
+.minTitle {
+    font-weight: bold;
+    width: 80px;
 }
 
 .buttonBlock {
