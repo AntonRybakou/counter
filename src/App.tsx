@@ -7,10 +7,14 @@ import {SettingsPanel} from "./components/SettingsPanel/SettingsPanel";
 function App() {
     const [state, setState] = useState(0)
     const increment = () => {
-        setState(a => ++a);
+        const newState = state + 1;
+        setState(newState);
+        localStorage.setItem('countValue', JSON.stringify(newState));
     }
     const decrement = () => {
-        setState(a => --a);
+        const newState = state - 1;
+        setState(newState);
+        localStorage.setItem('countValue', JSON.stringify(newState));
     }
     const reset = () => {
         setState(min);
@@ -29,18 +33,20 @@ function App() {
     const setLocalStorage = () => {
         localStorage.setItem('minValue', JSON.stringify(min));
         localStorage.setItem('maxValue', JSON.stringify(max));
-        setState(min);
     }
 
     useEffect(() => {
         const localMin = localStorage.getItem('minValue');
         const localMax = localStorage.getItem('maxValue');
+        const localCurrent = localStorage.getItem('countValue');
         if (localMin) {
             setMin(JSON.parse(localMin));
-            setState(JSON.parse(localMin));
         }
         if (localMax) {
             setMax(JSON.parse(localMax));
+        }
+        if (localCurrent) {
+            setState(JSON.parse(localCurrent));
         }
     }, [])
 

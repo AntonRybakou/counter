@@ -7,7 +7,7 @@ type ButtonPropsType = {
     disable?: boolean,
 }
 
-export const Button: React.FC<ButtonPropsType> = ( { name, callBack, disable } ) => {
+export const Button: React.FC<ButtonPropsType> = ({name, callBack, disable}) => {
     const onClickHandler = () => {
         callBack();
     }
