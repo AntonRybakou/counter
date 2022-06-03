@@ -23,9 +23,9 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
 
     useEffect(() => {
         (min < 0)
-            ? setError('MIN must be greater than 0')
+            ? setError('MIN must be >= 0')
             : (min >= max)
-                ? setError('MAX must be greater than MIN')
+                ? setError('MAX must be > MIN')
                 : setError('')
     }, [min, max, error])
 
