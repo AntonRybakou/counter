@@ -28,6 +28,6 @@ export const Input: React.FC<InputPropsType> = ({
     return <input value={value}
                   onChange={onChangeHandler}
                   onKeyDown={onKeyDownHandler}
-                  className={`${style.default} ${ error ? style.error : ''}`}
+                  className={`${style.default} ${error ? style.error : ''}`}
                   type={type}/>
 }

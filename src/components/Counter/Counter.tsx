@@ -12,9 +12,9 @@ export const Counter: React.FC<CounterPropsType> = ({
                                                         max,
                                                         min
                                                     }) => {
-    return (
-        <div className={`${style.count} ${(data >= max)? style.error : (data <= min) ? style.disable : '' }`}>
-            {data}</div>
-    )
 
+    return <div
+        className={`${style.count} ${(data >= max) ? style.error : (data <= min) ? style.disable : ''}`}>
+        {data}
+    </div>
 };
