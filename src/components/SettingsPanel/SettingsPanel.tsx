@@ -25,7 +25,7 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({min, max, reset
             </div>
 
             <div className={style.buttonBlock}>
-                <Button name={'Set values'} callBack={setLocalStorage}/>
+                <Button name={'Save values'} callBack={setLocalStorage}/>
             </div>
         </div>
     );

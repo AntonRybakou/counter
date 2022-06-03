@@ -1,4 +1,5 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import style from './Input.module.css';
 
 type InputPropsType = {
     value: number
@@ -21,9 +22,9 @@ export const Input: React.FC<InputPropsType> = ({value, callBack, type}) => {
         }
     }
 
-    return <input value={value}
+    return <input value={error ? error : value}
                   onChange={onChangeHandler}
                   onKeyDown={onKeyDownHandler}
-                  className={error ? "error" : ""}
+                  className={error ? style.error : style.default}
                   type={type}/>
 }

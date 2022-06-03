@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Counter} from './components/Counter/Counter'
-import {Button} from "./components/Button/Button";
 import {SettingsPanel} from "./components/SettingsPanel/SettingsPanel";
+import {CounterPanel} from "./components/CounterPanel/CounterPanel";
 
 function App() {
     const [state, setState] = useState(0)
@@ -30,15 +29,23 @@ function App() {
         setMax(value);
     }
 
+    const [status, setStatus] = useState(true);
+    const statusCallback = () => {
+        setStatus(!status);
+        localStorage.setItem('status', JSON.stringify(!status));
+    }
+
     const setLocalStorage = () => {
         localStorage.setItem('minValue', JSON.stringify(min));
         localStorage.setItem('maxValue', JSON.stringify(max));
+        statusCallback();
     }
 
     useEffect(() => {
         const localMin = localStorage.getItem('minValue');
         const localMax = localStorage.getItem('maxValue');
         const localCurrent = localStorage.getItem('countValue');
+        const localStatus = localStorage.getItem('status');
         if (localMin) {
             setMin(JSON.parse(localMin));
         }
@@ -48,31 +55,27 @@ function App() {
         if (localCurrent) {
             setState(JSON.parse(localCurrent));
         }
+        if (localStatus) {
+            setStatus(JSON.parse(localStatus));
+        }
     }, [])
 
     return (
         <>
-            <div className="App">
-                <Counter data={state}
-                         endCount={max}/>
+            {status
+                ? <SettingsPanel min={min}
+                                     max={max}
+                                     resetMin={resetMin}
+                                     resetMax={resetMax}
+                                     setLocalStorage={setLocalStorage}/>
 
-                <div className='buttons'>
-                    <Button name={'+'}
-                            callBack={increment}
-                            disable={state >= max}/>
-                    <Button name={'-'}
-                            callBack={decrement}
-                            disable={state <= min}/>
-                    <Button name={'Reset'}
-                            callBack={reset}/>
-                </div>
-            </div>
-
-            <SettingsPanel min={min}
-                           max={max}
-                           resetMin={resetMin}
-                           resetMax={resetMax}
-                           setLocalStorage={setLocalStorage}/>
+                : <CounterPanel data={state}
+                                min={min}
+                                max={max}
+                                increment={increment}
+                                decrement={decrement}
+                                reset={reset}
+                                statusCallback={statusCallback}/>}
         </>
     );
 }
