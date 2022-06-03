@@ -22,17 +22,10 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
     const [error, setError] = useState('');
 
     useEffect(() => {
-        // if (min < 0) {
-        //     setError('MIN value must be greater than 0');
-        // }
-        // if (min >= max) {
-        //     setError('MIN value must be less than MAX');
-        // }
-
         (min < 0)
             ? setError('MIN must be greater than 0')
             : (min >= max)
-                ? setError('MIN must be less than MAX')
+                ? setError('MAX must be greater than MIN')
                 : setError('')
     }, [min, max, error])
 
@@ -56,13 +49,10 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
 
 
             <div className={style.buttonBlock}>
-                <Button name={'Save values'}
+                <Button name={error ? error : 'Save settings'}
                         callBack={setLocalStorage}
                         disable={!!error}/>
             </div>
-
-            {error && <span className={style.errorMessage}>{error}</span>}
-
         </div>
     );
 }

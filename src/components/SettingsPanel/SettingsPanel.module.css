@@ -56,8 +56,5 @@
 }
 
 .errorMessage {
-    position: absolute;
     color: red;
-    top: 290px;
-    left: 150px;
 }
