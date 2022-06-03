@@ -24,6 +24,8 @@
 }
 
 .disable {
+    transition: all 0.6s;
+    transform: translateY(1px) translateX(2px);
     box-shadow: none;
     opacity: 50%;
 }

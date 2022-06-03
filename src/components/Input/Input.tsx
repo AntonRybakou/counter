@@ -1,30 +1,33 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './Input.module.css';
 
 type InputPropsType = {
     value: number
     callBack: (value: number) => void
+    error: string
     type?: string
 }
 
-export const Input: React.FC<InputPropsType> = ({value, callBack, type}) => {
-
-    let [error, setError] = useState<string | null>(null)
+export const Input: React.FC<InputPropsType> = ({
+                                                    value,
+                                                    callBack,
+                                                    type,
+                                                    error
+                                                }) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         callBack(Number(e.currentTarget.value));
     }
 
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
         if (e.key === 'Enter') {
             callBack(Number(e.currentTarget.value));
         }
     }
 
-    return <input value={error ? error : value}
+    return <input value={value}
                   onChange={onChangeHandler}
                   onKeyDown={onKeyDownHandler}
-                  className={error ? style.error : style.default}
+                  className={`${style.default} ${ error ? style.error : ''}`}
                   type={type}/>
 }

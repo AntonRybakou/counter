@@ -13,11 +13,20 @@ type CounterPanelPropsType = {
     statusCallback: () => void
 }
 
-export const CounterPanel: React.FC<CounterPanelPropsType> = ({data, min, max, decrement, reset, increment,statusCallback}) => {
+export const CounterPanel: React.FC<CounterPanelPropsType> = ({
+                                                                  data,
+                                                                  min,
+                                                                  max,
+                                                                  decrement,
+                                                                  reset,
+                                                                  increment,
+                                                                  statusCallback
+                                                              }) => {
     return (
         <div className={style.counterPanel}>
             <Counter data={data}
-                     endCount={max}/>
+                     max={max}
+                     min={min}/>
 
             <div className={style.buttons}>
                 <Button name={'+'}

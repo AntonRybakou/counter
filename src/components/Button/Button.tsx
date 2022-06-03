@@ -4,10 +4,14 @@ import style from './Button.module.css'
 type ButtonPropsType = {
     name: string,
     callBack: () => void,
-    disable?: boolean,
+    disable?: boolean
 }
 
-export const Button: React.FC<ButtonPropsType> = ({name, callBack, disable}) => {
+export const Button: React.FC<ButtonPropsType> = ({
+                                                      name,
+                                                      callBack,
+                                                      disable
+                                                  }) => {
     const onClickHandler = () => {
         callBack();
     }

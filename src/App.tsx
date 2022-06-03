@@ -17,16 +17,19 @@ function App() {
     }
     const reset = () => {
         setState(min);
+        localStorage.setItem('countValue', JSON.stringify(min));
     }
 
     const [min, setMin] = useState(0);
     const resetMin = (value: number) => {
         setMin(value);
+        localStorage.setItem('minValue', JSON.stringify(value));
     }
 
     const [max, setMax] = useState(3);
     const resetMax = (value: number) => {
         setMax(value);
+        localStorage.setItem('maxValue', JSON.stringify(value));
     }
 
     const [status, setStatus] = useState(true);
@@ -60,14 +63,23 @@ function App() {
         }
     }, [])
 
+    useEffect(() => {
+        if (max < state) {
+            setState(max);
+        }
+        if (min > state) {
+            setState(min);
+        }
+    }, [min, max, state])
+
     return (
         <>
             {status
                 ? <SettingsPanel min={min}
-                                     max={max}
-                                     resetMin={resetMin}
-                                     resetMax={resetMax}
-                                     setLocalStorage={setLocalStorage}/>
+                                 max={max}
+                                 resetMin={resetMin}
+                                 resetMax={resetMax}
+                                 setLocalStorage={setLocalStorage}/>
 
                 : <CounterPanel data={state}
                                 min={min}
