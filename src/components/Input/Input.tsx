@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import style from './Input.module.css';
 
 type InputPropsType = {
+    title: string
     value: number
     callBack: (value: number) => void
     error: string
@@ -9,6 +10,7 @@ type InputPropsType = {
 }
 
 export const Input: React.FC<InputPropsType> = ({
+                                                    title,
                                                     value,
                                                     callBack,
                                                     type,
@@ -25,9 +27,16 @@ export const Input: React.FC<InputPropsType> = ({
         }
     }
 
-    return <input value={value}
-                  onChange={onChangeHandler}
-                  onKeyDown={onKeyDownHandler}
-                  className={`${style.default} ${error ? style.error : ''}`}
-                  type={type}/>
+    return (
+        <>
+            <span className={style.title}>{title}</span>
+            <input value={value}
+                   onChange={onChangeHandler}
+                   onKeyDown={onKeyDownHandler}
+                   className={`${style.default} ${error ? style.error : ''}`}
+                   type={type}/>
+        </>
+
+    )
+
 }

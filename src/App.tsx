@@ -39,8 +39,6 @@ function App() {
     }
 
     const setLocalStorage = () => {
-        localStorage.setItem('minValue', JSON.stringify(min));
-        localStorage.setItem('maxValue', JSON.stringify(max));
         statusCallback();
     }
 
@@ -66,9 +64,11 @@ function App() {
     useEffect(() => {
         if (max < state) {
             setState(max);
+            localStorage.setItem('countValue', JSON.stringify(max));
         }
         if (min > state) {
             setState(min);
+            localStorage.setItem('countValue', JSON.stringify(min));
         }
     }, [min, max, state])
 

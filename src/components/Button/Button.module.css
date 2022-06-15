@@ -11,8 +11,8 @@
 }
 
 .button:hover {
-    color: greenyellow;
-    border-color: greenyellow;
+    color: yellow;
+    border-color: yellow;
     cursor: pointer;
 }
 

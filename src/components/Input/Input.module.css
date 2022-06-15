@@ -21,3 +21,8 @@
     color: red;
     border-color: red;
 }
+
+.title {
+    font-weight: bold;
+    width: 80px;
+}

@@ -31,20 +31,21 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
 
     return (
         <div className={style.Set}>
-            <div className={style.maxBlock}>
-                <span className={style.maxTitle}>Maximum</span>
-                <Input value={max}
+            <div className={style.inputBlock}>
+                <Input title={'Maximum'}
+                       value={max}
                        callBack={resetMax}
                        type={'number'}
                        error={error}/>
             </div>
 
-            <div className={style.minBlock}>
-                <span className={style.minTitle}>Minimum</span>
-                <Input value={min}
-                       callBack={resetMin}
-                       type={'number'}
-                       error={error}/>
+            <div className={style.inputBlock}>
+                <Input
+                    title={'Minimum'}
+                    value={min}
+                    callBack={resetMin}
+                    type={'number'}
+                    error={error}/>
             </div>
 
 
