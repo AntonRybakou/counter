@@ -24,7 +24,12 @@ type ActionType = IncrementActionType | DecrementActionType
     | ResetActionType | SetMinValueActionType
     | SetMaxValueActionType;
 
-// const initialState = Number(localStorage.getItem('countValue'));
+const initialState = {
+    count: Number(localStorage.getItem('countValue')) || 0,
+    min: Number(localStorage.getItem('minValue')) || 0,
+    max: Number(localStorage.getItem('maxValue')) || 0,
+    status: Boolean.valueOf(localStorage.getItem('status')) || true
+};
 
 export const counterReducer = (state: number, action: ActionType): number => {
     switch (action.type) {

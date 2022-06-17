@@ -4,6 +4,13 @@ import {SettingsPanel} from "./components/SettingsPanel/SettingsPanel";
 import {CounterPanel} from "./components/CounterPanel/CounterPanel";
 import {counterReducer, decrementAC, incrementAC, resetAC, setMaxValueAC, setMinValueAC} from "./state/counter-reducer";
 
+export type StateType = {
+    count: number;
+    min: number;
+    max: number;
+    status: boolean;
+}
+
 function AppWithReducer() {
     const [state, dispatchToState] = useReducer(counterReducer, Number(localStorage.getItem('countValue')))
 
