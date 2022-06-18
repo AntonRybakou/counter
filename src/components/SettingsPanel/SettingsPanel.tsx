@@ -2,23 +2,16 @@ import React, {useEffect, useState} from 'react';
 import style from './SettingsPanel.module.css';
 import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
+import {setMaxValueAC, setMinValueAC, setStatusAC} from "../../state/counter-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
+import {StateType} from "../../App";
 
-type SettingsPanelPropsType = {
-    min: number,
-    max: number,
-    resetMin: (value: number) => void,
-    resetMax: (value: number) => void,
-    setLocalStorage: () => void
-}
+export const SettingsPanel: React.FC = () => {
 
-export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
-                                                                    min,
-                                                                    max,
-                                                                    resetMin,
-                                                                    resetMax,
-                                                                    setLocalStorage
-                                                                }) => {
-
+    const counter = useSelector<AppRootStateType, StateType>(state => state)
+    const dispatch = useDispatch();
+    const {min, max} = counter;
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -34,7 +27,7 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
             <div className={style.inputBlock}>
                 <Input title={'Maximum'}
                        value={max}
-                       callBack={resetMax}
+                       callBack={(value: number) => dispatch(setMaxValueAC(value))}
                        type={'number'}
                        error={error}/>
             </div>
@@ -43,7 +36,7 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
                 <Input
                     title={'Minimum'}
                     value={min}
-                    callBack={resetMin}
+                    callBack={(value: number) => dispatch(setMinValueAC(value))}
                     type={'number'}
                     error={error}/>
             </div>
@@ -51,7 +44,7 @@ export const SettingsPanel: React.FC<SettingsPanelPropsType> = ({
 
             <div className={style.buttonBlock}>
                 <Button name={error ? error : 'Save settings'}
-                        callBack={setLocalStorage}
+                        callBack={() => dispatch(setStatusAC())}
                         disable={!!error}/>
             </div>
         </div>

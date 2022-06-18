@@ -2,45 +2,34 @@ import React from 'react';
 import style from './CounterPanel.module.css'
 import {Counter} from "../Counter/Counter";
 import {Button} from "../Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {decrementAC, incrementAC, resetAC, setStatusAC} from "../../state/counter-reducer";
+import {StateType} from "../../App";
+import {AppRootStateType} from "../../state/store";
 
-type CounterPanelPropsType = {
-    data: number
-    min: number
-    max: number
-    increment: () => void
-    decrement: () => void
-    reset: () => void
-    statusCallback: () => void
-}
-
-export const CounterPanel: React.FC<CounterPanelPropsType> = ({
-                                                                  data,
-                                                                  min,
-                                                                  max,
-                                                                  decrement,
-                                                                  reset,
-                                                                  increment,
-                                                                  statusCallback
-                                                              }) => {
+export const CounterPanel: React.FC = () => {
+    const counter = useSelector<AppRootStateType, StateType>(state => state)
+    const dispatch = useDispatch();
+    const {count, min, max} = counter;
     return (
         <div className={style.counterPanel}>
-            <Counter data={data}
+            <Counter count={count}
                      max={max}
                      min={min}/>
 
             <div className={style.buttons}>
                 <Button name={'+'}
-                        callBack={increment}
-                        disable={data >= max}/>
+                        callBack={() => dispatch(incrementAC())}
+                        disable={count >= max}/>
                 <Button name={'-'}
-                        callBack={decrement}
-                        disable={data <= min}/>
+                        callBack={() => dispatch(decrementAC())}
+                        disable={count <= min}/>
                 <Button name={'Reset'}
-                        callBack={reset}/>
+                        callBack={() => dispatch(resetAC())}/>
             </div>
 
             <div className={style.buttonBlock}>
-                <Button name={'Settings'} callBack={statusCallback}/>
+                <Button name={'Settings'} callBack={() => dispatch(setStatusAC())}/>
             </div>
         </div>
     );

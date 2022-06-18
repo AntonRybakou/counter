@@ -1,4 +1,4 @@
-import {StateType} from "../AppWithRedux";
+import {StateType} from "../App";
 
 type IncrementActionType = {
     type: 'INCREMENT'
@@ -23,8 +23,7 @@ type SetMaxValueActionType = {
 }
 
 type SetStatusActionType = {
-    type: 'SET_STATUS'
-    isSettings: boolean
+    type: 'CHANGE_STATUS'
 }
 
 type ActionType = IncrementActionType | DecrementActionType
@@ -82,11 +81,11 @@ export const counterReducer = (state: StateType = initialState, action: ActionTy
                 count
             }
         }
-        case 'SET_STATUS': {
-            localStorage.setItem('isSettings', JSON.stringify(action.isSettings));
+        case 'CHANGE_STATUS': {
+            localStorage.setItem('isSettings', JSON.stringify(!state.isSettings));
             return {
                 ...state,
-                isSettings: action.isSettings
+                isSettings: !state.isSettings
             }
         }
         default:
@@ -114,6 +113,6 @@ export const setMaxValueAC = (maxValue: number): SetMaxValueActionType => {
     return {type: 'SET_MAX_VALUE', maxValue}
 }
 
-export const setStatusAC = (isSettings: boolean): SetStatusActionType => {
-    return {type: 'SET_STATUS', isSettings}
+export const setStatusAC = (): SetStatusActionType => {
+    return {type: 'CHANGE_STATUS'}
 }
