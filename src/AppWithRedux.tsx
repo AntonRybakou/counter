@@ -22,35 +22,16 @@ export type StateType = {
 }
 
 function AppWithRedux() {
-
     const counter = useSelector<AppRootStateType, StateType>(state => state)
     const dispatch = useDispatch();
 
-    const increment = () => {
-        dispatch(incrementAC());
-    }
-    const decrement = () => {
-        dispatch(decrementAC());
-    }
-    const reset = () => {
-        dispatch(resetAC());
-    }
-
-    const resetMin = (value: number) => {
-        dispatch(setMinValueAC(value));
-    }
-
-    const resetMax = (value: number) => {
-        dispatch(setMaxValueAC(value));
-    }
-
-    const statusCallback = () => {
-        dispatch(setStatusAC(!counter.status));
-    }
-
-    const setLocalStorage = () => {
-        statusCallback();
-    }
+    const increment = () => dispatch(incrementAC());
+    const decrement = () => dispatch(decrementAC());
+    const reset = () => dispatch(resetAC());
+    const resetMin = (value: number) => dispatch(setMinValueAC(value));
+    const resetMax = (value: number) => dispatch(setMaxValueAC(value));
+    const statusCallback = () => dispatch(setStatusAC(!counter.status));
+    const setLocalStorage = () => statusCallback();
 
     useEffect(() => {
         if (counter.max < counter.count) {
