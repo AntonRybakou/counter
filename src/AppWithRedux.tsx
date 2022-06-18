@@ -64,19 +64,24 @@ function AppWithRedux() {
     return (
         <>
             {(counter.status)
-                ? <SettingsPanel min={counter.min}
-                                 max={counter.max}
-                                 resetMin={resetMin}
-                                 resetMax={resetMax}
-                                 setLocalStorage={setLocalStorage}/>
 
-                : <CounterPanel data={counter.count}
-                                min={counter.min}
-                                max={counter.max}
-                                increment={increment}
-                                decrement={decrement}
-                                reset={reset}
-                                statusCallback={statusCallback}/>}
+                ? <SettingsPanel
+                    min={counter.min}
+                    max={counter.max}
+                    resetMin={resetMin}
+                    resetMax={resetMax}
+                    setLocalStorage={setLocalStorage}
+                />
+
+                : <CounterPanel
+                    data={counter.count}
+                    min={counter.min}
+                    max={counter.max}
+                    increment={increment}
+                    decrement={decrement}
+                    reset={reset}
+                    statusCallback={statusCallback}
+                />}
         </>
     );
 }
