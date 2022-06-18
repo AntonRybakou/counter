@@ -1,16 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import {SettingsPanel} from "./components/SettingsPanel/SettingsPanel";
 import {CounterPanel} from "./components/CounterPanel/CounterPanel";
-import {
-    decrementAC,
-    incrementAC,
-    resetAC,
-    setCountValueAC,
-    setMaxValueAC,
-    setMinValueAC,
-    setStatusAC
-} from "./state/counter-reducer";
+import {decrementAC, incrementAC, resetAC, setMaxValueAC, setMinValueAC, setStatusAC} from "./state/counter-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 
@@ -18,7 +10,7 @@ export type StateType = {
     count: number;
     min: number;
     max: number;
-    status: boolean;
+    isSettings: boolean;
 }
 
 function AppWithRedux() {
@@ -30,21 +22,12 @@ function AppWithRedux() {
     const reset = () => dispatch(resetAC());
     const resetMin = (value: number) => dispatch(setMinValueAC(value));
     const resetMax = (value: number) => dispatch(setMaxValueAC(value));
-    const statusCallback = () => dispatch(setStatusAC(!counter.status));
+    const statusCallback = () => dispatch(setStatusAC(!counter.isSettings));
     const setLocalStorage = () => statusCallback();
-
-    useEffect(() => {
-        if (counter.max < counter.count) {
-            dispatch(setCountValueAC(counter.max));
-        }
-        if (counter.min > counter.count) {
-            dispatch(setCountValueAC(counter.min));
-        }
-    }, [counter.max, counter.min, counter.count, dispatch])
 
     return (
         <>
-            {(counter.status)
+            {(counter.isSettings)
 
                 ? <SettingsPanel
                     min={counter.min}
