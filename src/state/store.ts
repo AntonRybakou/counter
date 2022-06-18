@@ -1,7 +1,14 @@
 import {counterReducer} from "./counter-reducer";
-import { legacy_createStore as createStore} from 'redux';
+import {compose, legacy_createStore as createStore} from 'redux';
 
-export const store = createStore(counterReducer);
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export const store = createStore(counterReducer, composeEnhancers());
 export type AppRootStateType = ReturnType<typeof counterReducer>
 
 // @ts-ignore

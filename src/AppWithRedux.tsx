@@ -53,25 +53,6 @@ function AppWithRedux() {
     }
 
     useEffect(() => {
-        const localMin = localStorage.getItem('minValue');
-        const localMax = localStorage.getItem('maxValue');
-        const localCurrent = localStorage.getItem('countValue');
-        const localStatus = localStorage.getItem('status');
-        if (localMin) {
-            dispatch(setMinValueAC(Number(localMin)));
-        }
-        if (localMax) {
-            dispatch(setMaxValueAC(Number(localMax)));
-        }
-        if (localCurrent) {
-            dispatch(JSON.parse(localCurrent));
-        }
-        if (localStatus) {
-            dispatch(setStatusAC(JSON.parse(localStatus)));
-        }
-    }, [dispatch])
-
-    useEffect(() => {
         if (counter.max < counter.count) {
             dispatch(setCountValueAC(counter.max));
         }
