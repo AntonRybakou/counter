@@ -8,7 +8,6 @@ import {AppRootStateType} from "../../state/store";
 import {StateType} from "../../App";
 
 export const SettingsPanel: React.FC = () => {
-
     const counter = useSelector<AppRootStateType, StateType>(state => state)
     const dispatch = useDispatch();
     const {min, max} = counter;
@@ -40,7 +39,6 @@ export const SettingsPanel: React.FC = () => {
                     type={'number'}
                     error={error}/>
             </div>
-
 
             <div className={style.buttonBlock}>
                 <Button name={error ? error : 'Save settings'}

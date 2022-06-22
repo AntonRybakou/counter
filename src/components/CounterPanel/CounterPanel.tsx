@@ -11,6 +11,7 @@ export const CounterPanel: React.FC = () => {
     const counter = useSelector<AppRootStateType, StateType>(state => state)
     const dispatch = useDispatch();
     const {count, min, max} = counter;
+
     return (
         <div className={style.counterPanel}>
             <Counter count={count}
