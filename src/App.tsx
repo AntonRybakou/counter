@@ -13,8 +13,7 @@ export type StateType = {
 }
 
 function App() {
-    const counter = useSelector<AppRootStateType, StateType>(state => state)
-    const {isSettings} = counter;
+    const isSettings = useSelector<AppRootStateType, boolean>(state => state.isSettings)
 
     return (
         <>

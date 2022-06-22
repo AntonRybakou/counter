@@ -6,7 +6,7 @@ type InputPropsType = {
     value: number
     callBack: (value: number) => void
     error: string
-    type?: string
+    type: string
 }
 
 export const Input: React.FC<InputPropsType> = ({

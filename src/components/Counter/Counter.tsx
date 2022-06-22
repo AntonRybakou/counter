@@ -14,7 +14,11 @@ export const Counter: React.FC<CounterPropsType> = ({
                                                     }) => {
 
     return <div
-        className={`${style.count} ${(count >= max) ? style.error : (count <= min) ? style.disable : ''}`}>
+        className={`${style.count} ${(count >= max)
+            ? style.error
+            : (count <= min)
+                ? style.disable
+                : ''}`}>
         {count}
     </div>
 };

@@ -40,49 +40,38 @@ const initialState = {
 export const counterReducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case 'INCREMENT': {
-            localStorage.setItem('countValue', JSON.stringify(state.count + 1));
             return {
                 ...state,
                 count: state.count + 1
             }
         }
         case 'DECREMENT': {
-            localStorage.setItem('countValue', JSON.stringify(state.count - 1));
             return {
                 ...state,
                 count: state.count - 1
             }
         }
         case 'RESET': {
-            const minValue = Number(localStorage.getItem('minValue'));
-            localStorage.setItem('countValue', JSON.stringify(minValue));
             return {
                 ...state,
-                count: minValue
+                count: state.min
             }
         }
         case 'SET_MIN_VALUE': {
-            localStorage.setItem('minValue', JSON.stringify(action.minValue));
-            const count = state.count < action.minValue ? action.minValue : state.count
-            localStorage.setItem('countValue', JSON.stringify(count));
             return {
                 ...state,
                 min: action.minValue,
-                count
+                count: state.count < action.minValue ? action.minValue : state.count
             }
         }
         case 'SET_MAX_VALUE': {
-            localStorage.setItem('maxValue', JSON.stringify(action.maxValue));
-            const count = state.count > action.maxValue ? action.maxValue : state.count
-            localStorage.setItem('countValue', JSON.stringify(count));
             return {
                 ...state,
                 max: action.maxValue,
-                count
+                count: state.count > action.maxValue ? action.maxValue : state.count
             }
         }
         case 'CHANGE_STATUS': {
-            localStorage.setItem('isSettings', JSON.stringify(!state.isSettings));
             return {
                 ...state,
                 isSettings: !state.isSettings

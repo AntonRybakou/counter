@@ -1,17 +1,39 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import style from './SettingsPanel.module.css';
 import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
 import {setMaxValueAC, setMinValueAC, setStatusAC} from "../../state/counter-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../state/store";
-import {StateType} from "../../App";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../state/store";
 
 export const SettingsPanel: React.FC = () => {
-    const counter = useSelector<AppRootStateType, StateType>(state => state)
+    const count = useAppSelector(state => state.count)
+    const min = useAppSelector(state => state.min)
+    const max = useAppSelector(state => state.max)
+    const isSettings = useAppSelector(state => state.isSettings)
     const dispatch = useDispatch();
-    const {min, max} = counter;
+
     const [error, setError] = useState('');
+
+    const setStatus = useCallback(() => {
+        localStorage.setItem('isSettings', JSON.stringify(!isSettings));
+        dispatch(setStatusAC());
+    }, [isSettings, dispatch]);
+
+    const setMinValue = useCallback((value: number) => {
+        localStorage.setItem('minValue', JSON.stringify(value));
+        const localCount = count < value ? value : count;
+        localStorage.setItem('countValue', JSON.stringify(localCount));
+        dispatch(setMinValueAC(value));
+    }, [count, dispatch]);
+
+    const setMaxValue = useCallback((value: number) => {
+        localStorage.setItem('maxValue', JSON.stringify(value));
+        const localCount = count > value ? value : count;
+        localStorage.setItem('countValue', JSON.stringify(localCount));
+        dispatch(setMaxValueAC(value));
+    }, [count, dispatch]);
+
 
     useEffect(() => {
         (min < 0)
@@ -26,7 +48,7 @@ export const SettingsPanel: React.FC = () => {
             <div className={style.inputBlock}>
                 <Input title={'Maximum'}
                        value={max}
-                       callBack={(value: number) => dispatch(setMaxValueAC(value))}
+                       callBack={setMaxValue}
                        type={'number'}
                        error={error}/>
             </div>
@@ -35,14 +57,14 @@ export const SettingsPanel: React.FC = () => {
                 <Input
                     title={'Minimum'}
                     value={min}
-                    callBack={(value: number) => dispatch(setMinValueAC(value))}
+                    callBack={setMinValue}
                     type={'number'}
                     error={error}/>
             </div>
 
             <div className={style.buttonBlock}>
                 <Button name={error ? error : 'Save settings'}
-                        callBack={() => dispatch(setStatusAC())}
+                        callBack={setStatus}
                         disable={!!error}/>
             </div>
         </div>

@@ -12,14 +12,12 @@ export const Button: React.FC<ButtonPropsType> = ({
                                                       callBack,
                                                       disable
                                                   }) => {
-    const onClickHandler = () => {
-        callBack();
-    }
+
     return (
         <button
             className={`${style.button} ${disable ? style.disable : style.button}`}
             disabled={disable}
-            onClick={onClickHandler}>
+            onClick={callBack}>
             {name}
         </button>
     );
