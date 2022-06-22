@@ -1,5 +1,8 @@
 # Simple counter
 
+#### Latest version with redux
+![img.png](img.png) ![img_1.png](img_1.png)
+
 #### Added new css
 ![img.png](src/images/img.png)
 
