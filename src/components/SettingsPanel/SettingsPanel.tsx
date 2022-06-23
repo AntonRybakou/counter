@@ -6,11 +6,9 @@ import {setMaxValueAC, setMinValueAC, setStatusAC} from "../../state/counter-red
 import {useDispatch} from "react-redux";
 import {useAppSelector} from "../../state/store";
 
-export const SettingsPanel: React.FC = () => {
-    const count = useAppSelector(state => state.count)
-    const min = useAppSelector(state => state.min)
-    const max = useAppSelector(state => state.max)
-    const isSettings = useAppSelector(state => state.isSettings)
+export const SettingsPanel: React.FC = React.memo(() => {
+    const counter = useAppSelector(state => state);
+    const {count, min, max, isSettings} = counter;
     const dispatch = useDispatch();
 
     const [error, setError] = useState('');
@@ -69,4 +67,4 @@ export const SettingsPanel: React.FC = () => {
             </div>
         </div>
     );
-}
+});

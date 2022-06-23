@@ -9,18 +9,16 @@ type InputPropsType = {
     type: string
 }
 
-export const Input: React.FC<InputPropsType> = ({
+export const Input: React.FC<InputPropsType> = React.memo(({
                                                     title,
                                                     value,
                                                     callBack,
                                                     type,
                                                     error
                                                 }) => {
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         callBack(Number(e.currentTarget.value));
     }
-
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             callBack(Number(e.currentTarget.value));
@@ -36,7 +34,5 @@ export const Input: React.FC<InputPropsType> = ({
                    className={`${style.default} ${error ? style.error : ''}`}
                    type={type}/>
         </>
-
     )
-
-}
+})

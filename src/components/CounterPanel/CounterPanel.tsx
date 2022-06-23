@@ -6,12 +6,9 @@ import {useDispatch} from "react-redux";
 import {decrementAC, incrementAC, resetAC, setStatusAC} from "../../state/counter-reducer";
 import {useAppSelector} from "../../state/store";
 
-export const CounterPanel: React.FC = () => {
-    const count = useAppSelector(state => state.count)
-    const min = useAppSelector(state => state.min)
-    const max = useAppSelector(state => state.max)
-    const isSettings = useAppSelector(state => state.isSettings)
-
+export const CounterPanel: React.FC = React.memo(() => {
+    const counter = useAppSelector(state => state);
+    const {count, min, max, isSettings} = counter;
     const dispatch = useDispatch()
 
     const increment = useCallback(() => {
@@ -56,4 +53,4 @@ export const CounterPanel: React.FC = () => {
             </div>
         </div>
     );
-}
+});
