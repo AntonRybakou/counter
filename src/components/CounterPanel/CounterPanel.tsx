@@ -7,6 +7,7 @@ import {decrementAC, incrementAC, resetAC, setStatusAC} from "../../state/counte
 import {useAppSelector} from "../../state/store";
 
 export const CounterPanel: React.FC = React.memo(() => {
+    console.log('counter')
     const counter = useAppSelector(state => state);
     const {count, min, max, isSettings} = counter;
     const dispatch = useDispatch()

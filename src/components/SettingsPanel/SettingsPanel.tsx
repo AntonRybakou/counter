@@ -7,8 +7,9 @@ import {useDispatch} from "react-redux";
 import {useAppSelector} from "../../state/store";
 
 export const SettingsPanel: React.FC = React.memo(() => {
+    console.log('settings')
     const counter = useAppSelector(state => state);
-    const {min, max, isSettings} = counter;
+    const {count, min, max, isSettings} = counter;
     const dispatch = useDispatch();
 
     const [error, setError] = useState('');
@@ -16,13 +17,19 @@ export const SettingsPanel: React.FC = React.memo(() => {
     const setStatus = useCallback(() => {
         localStorage.setItem('isSettings', JSON.stringify(!isSettings));
         dispatch(setStatusAC());
-    }, [isSettings, dispatch]);
+        const localCount = count < min
+            ? min
+            : count > max
+                ? max
+                : count
+        localStorage.setItem('countValue', JSON.stringify(localCount))
+    }, [count, min, max, isSettings, dispatch]);
 
     const setMinValue = useCallback((value: number) => {
         (value < 0)
-            ? setError('MIN < 0')
+            ? setError('Minimum')
             : (value >= max)
-                ? setError('MIN >= MAX')
+                ? setError('Minimum >= Maximum')
                 : error.length > 0 && setError('')
 
         localStorage.setItem('minValue', JSON.stringify(value));
@@ -31,9 +38,9 @@ export const SettingsPanel: React.FC = React.memo(() => {
 
     const setMaxValue = useCallback((value: number) => {
         (value < 0)
-            ? setError('MAX < 0')
+            ? setError('Maximum < 0')
             : (value <= min)
-                ? setError('MAX <= MIN')
+                ? setError('Maximum <= Minimum')
                 : error.length > 0 && setError('')
 
         localStorage.setItem('maxValue', JSON.stringify(value));
