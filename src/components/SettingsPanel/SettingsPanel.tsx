@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import style from './SettingsPanel.module.css';
 import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
@@ -8,7 +8,7 @@ import {useAppSelector} from "../../state/store";
 
 export const SettingsPanel: React.FC = React.memo(() => {
     const counter = useAppSelector(state => state);
-    const {count, min, max, isSettings} = counter;
+    const {min, max, isSettings} = counter;
     const dispatch = useDispatch();
 
     const [error, setError] = useState('');
@@ -19,27 +19,26 @@ export const SettingsPanel: React.FC = React.memo(() => {
     }, [isSettings, dispatch]);
 
     const setMinValue = useCallback((value: number) => {
+        (value < 0)
+            ? setError('MIN < 0')
+            : (value >= max)
+                ? setError('MIN >= MAX')
+                : error.length > 0 && setError('')
+
         localStorage.setItem('minValue', JSON.stringify(value));
-        const localCount = count < value ? value : count;
-        localStorage.setItem('countValue', JSON.stringify(localCount));
         dispatch(setMinValueAC(value));
-    }, [count, dispatch]);
+    }, [error.length, max, dispatch]);
 
     const setMaxValue = useCallback((value: number) => {
+        (value < 0)
+            ? setError('MAX < 0')
+            : (value <= min)
+                ? setError('MAX <= MIN')
+                : error.length > 0 && setError('')
+
         localStorage.setItem('maxValue', JSON.stringify(value));
-        const localCount = count > value ? value : count;
-        localStorage.setItem('countValue', JSON.stringify(localCount));
         dispatch(setMaxValueAC(value));
-    }, [count, dispatch]);
-
-
-    useEffect(() => {
-        (min < 0)
-            ? setError('Minimum < 0')
-            : (min >= max)
-                ? setError('Maximum <= Minimum')
-                : setError('')
-    }, [min, max, error])
+    }, [error.length, min, dispatch]);
 
     return (
         <div className={style.Set}>

@@ -61,20 +61,23 @@ export const counterReducer = (state: StateType = initialState, action: ActionTy
             return {
                 ...state,
                 min: action.minValue,
-                count: state.count < action.minValue ? action.minValue : state.count
             }
         }
         case 'SET_MAX_VALUE': {
             return {
                 ...state,
                 max: action.maxValue,
-                count: state.count > action.maxValue ? action.maxValue : state.count
             }
         }
         case 'CHANGE_STATUS': {
             return {
                 ...state,
-                isSettings: !state.isSettings
+                isSettings: !state.isSettings,
+                count: state.isSettings && state.count < state.min
+                    ? state.min
+                    : state.count > state.max
+                        ? state.max
+                        : state.count
             }
         }
         default:
