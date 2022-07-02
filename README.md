@@ -4,9 +4,18 @@
 
 ### Default start values:
 
+- Settings panel - ON
 - Maximum = 5
 - Minimum = 0
 
-Each value (min, max, count, isSettings) stored at Local Storage
+Then each value (min, max, count, isSettings) stored at Local Storage.
 
-![img.png](src/images/img.png)
+![img.png](img.png)
+
+### Errors:
+
+- Minimum >= Maximum
+- Minimum < 0
+- Maximum < 0
+
+![img.png](src/images/errors.png)
