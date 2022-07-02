@@ -10,7 +10,7 @@
 
 Then each value (min, max, count, isSettings) stored at Local Storage.
 
-![img.png](img.png)
+![img.png](src/images/img.png)
 
 ### Errors:
 
