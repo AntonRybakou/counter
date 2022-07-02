@@ -34,7 +34,7 @@ const initialState = {
     count: Number(localStorage.getItem('countValue')) || 0,
     min: Number(localStorage.getItem('minValue')) || 0,
     max: Number(localStorage.getItem('maxValue')) || 5,
-    isSettings: localStorage.getItem('isSettings') === 'true'
+    isSettings: Boolean(localStorage.getItem('isSettings')) || true
 };
 
 export const counterReducer = (state: StateType = initialState, action: ActionType): StateType => {

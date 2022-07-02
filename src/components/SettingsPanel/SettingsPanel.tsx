@@ -7,7 +7,6 @@ import {useDispatch} from "react-redux";
 import {useAppSelector} from "../../state/store";
 
 export const SettingsPanel: React.FC = React.memo(() => {
-    console.log('settings')
     const counter = useAppSelector(state => state);
     const {count, min, max, isSettings} = counter;
     const dispatch = useDispatch();
