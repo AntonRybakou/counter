@@ -30,7 +30,6 @@ export const SettingsPanel: React.FC = React.memo(() => {
             : (value >= max)
                 ? setError('Minimum >= Maximum')
                 : error.length > 0 && setError('')
-
         localStorage.setItem('minValue', JSON.stringify(value));
         dispatch(setMinValueAC(value));
     }, [error.length, max, dispatch]);
@@ -41,7 +40,6 @@ export const SettingsPanel: React.FC = React.memo(() => {
             : (value <= min)
                 ? setError('Maximum <= Minimum')
                 : error.length > 0 && setError('')
-
         localStorage.setItem('maxValue', JSON.stringify(value));
         dispatch(setMaxValueAC(value));
     }, [error.length, min, dispatch]);
